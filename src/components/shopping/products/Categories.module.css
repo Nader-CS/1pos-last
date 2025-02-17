@@ -1,0 +1,6 @@
+.header_background {
+  background-image: url('/landing.jpg');
+  width: 100%;
+  height: 20%;
+  background-size: cover;
+}

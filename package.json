@@ -1,0 +1,45 @@
+{
+  "name": "1pos",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prettier:check": "prettier --check --ignore-path .gitignore .",
+    "prettier:fix": "prettier --write --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "@nextui-org/react": "^2.4.8",
+    "@reduxjs/toolkit": "^2.3.0",
+    "@tap-payments/card-sdk": "^1.0.2",
+    "cookies-next": "^4.3.0",
+    "framer-motion": "^11.11.17",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "next": "15.0.2",
+    "next-intl": "^3.24.0",
+    "react": "19.0.0-rc-02c0e824-20241028",
+    "react-collapsible": "^2.10.0",
+    "react-device-detect": "^2.2.3",
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "react-icons": "^5.3.0",
+    "react-loading-skeleton": "^3.5.0",
+    "react-redux": "^9.1.2",
+    "react-swipeable": "^7.0.2",
+    "react-toastify": "^10.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "15.0.2",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-no-inline-styles": "^1.0.5",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "postcss": "^8",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "tailwindcss": "^3.4.1"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}
