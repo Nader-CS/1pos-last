@@ -1,0 +1,6 @@
+.button {
+  @apply bg-primary  w-[100%] sticky bottom-0 rounded-none flex justify-center items-center font-semibold py-[2.2rem];
+}
+.buttonText {
+  @apply text-white font-[medium] text-[1.2rem];
+}

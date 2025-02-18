@@ -1,0 +1,12 @@
+.container {
+  @apply relative h-[100%];
+}
+.productImage {
+  @apply w-auto h-auto;
+}
+.imageContainer {
+  @apply flex justify-center bg-white;
+}
+.backContainer {
+  @apply absolute left-3 top-3 cursor-pointer;
+}

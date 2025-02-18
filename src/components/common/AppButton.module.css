@@ -1,0 +1,9 @@
+.button {
+  @apply flex h-14 items-center justify-between rounded-lg text-base capitalize font-regular;
+}
+.container {
+  @apply flex items-center gap-3 justify-center;
+}
+.spinner {
+  @apply animate-spin text-primary;
+}

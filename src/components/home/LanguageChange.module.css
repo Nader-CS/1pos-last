@@ -1,0 +1,12 @@
+.container {
+  @apply flex justify-center gap-2 text-black;
+}
+.button {
+  @apply bg-transparent shadow-none hover:bg-transparent border-none;
+}
+.buttonTxtStyle {
+  @apply font-regular;
+}
+.buttonActive {
+  @apply underline underline-offset-4;
+}

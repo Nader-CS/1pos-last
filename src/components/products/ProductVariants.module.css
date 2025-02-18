@@ -1,0 +1,28 @@
+.header {
+  @apply my-3;
+}
+.headerText {
+  @apply text-gray-800 mb-4 text-lg font-bold;
+}
+
+.mainContainer {
+  @apply flex gap-2;
+}
+.rowSubContainer {
+  @apply mb-4 max-w-[25%];
+}
+.button {
+  @apply flex h-[4rem] w-[4rem] flex-col items-center justify-evenly rounded-md p-1;
+}
+.variantName {
+  @apply text-xs text-center;
+}
+.variantPriceAddition {
+  @apply mt-2 text-center text-xs;
+}
+.columnSubContainer {
+  @apply mb-4 flex items-center gap-2;
+}
+.columnVariantText {
+  @apply text-gray-800 text-sm;
+}

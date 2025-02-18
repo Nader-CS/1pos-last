@@ -1,0 +1,32 @@
+/* ProductActionButton.module.css */
+.container {
+  @apply flex h-full w-[20%] flex-col items-center justify-center gap-1;
+}
+
+.priceText {
+  @apply text-[0.75rem] font-medium;
+}
+
+.priceTextActive {
+  @apply text-primary;
+}
+
+.buttonContainer {
+  @apply flex h-full w-full items-center justify-center rounded-lg border-[1px] border-doveGray;
+}
+
+.buttonContainerActive {
+  @apply border-primary;
+}
+
+.buttonInnerContainer {
+  @apply flex w-full items-center justify-between px-2;
+}
+
+.addButton {
+  @apply text-doveGray;
+}
+
+.quantityText {
+  @apply text-[0.75rem] font-medium text-primary;
+}

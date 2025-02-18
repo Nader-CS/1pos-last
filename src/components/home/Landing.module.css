@@ -1,0 +1,20 @@
+.container {
+  @apply relative flex h-screen justify-center text-white;
+}
+.background {
+  @apply absolute inset-0 bg-cover bg-center;
+  background-image: url("../../assets/images/landing.webp");
+  background-size: "cover";
+}
+.contentContainer {
+  @apply flex w-full flex-col justify-between;
+}
+.contentSubContainer {
+  @apply relative z-10 flex w-full flex-col items-center justify-center text-center;
+}
+.logoContainer {
+  @apply mt-[5rem] w-[90%] max-w-[300px];
+}
+.buttonsContainer {
+  @apply mt-[10rem] w-[90%] max-w-[300px];
+}

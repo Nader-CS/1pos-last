@@ -1,0 +1,31 @@
+.headerContainer {
+  @apply mt-2 flex cursor-pointer items-center;
+}
+.headerSubContainer {
+  @apply flex items-center space-x-2;
+}
+.boldText {
+  @apply font-bold;
+}
+.opacity {
+  @apply opacity-70;
+}
+.requiredContainer {
+  @apply rounded-lg px-3 py-1;
+}
+
+.requiredText {
+  @apply text-primary;
+}
+.addonContainer {
+  @apply mt-4 space-y-4;
+}
+.addonSubContainer {
+  @apply flex cursor-pointer items-center justify-between;
+}
+.addonItem {
+  @apply flex items-center gap-2 space-x-3;
+}
+.grayText {
+  @apply text-gray-400;
+}

@@ -1,0 +1,18 @@
+.container {
+  @apply flex h-[60px] w-[100%] items-center justify-between py-1;
+}
+.subContainer {
+  @apply flex w-[80%] cursor-pointer gap-2;
+}
+.productImg {
+  @apply w-auto h-auto;
+}
+.details {
+  @apply flex flex-col justify-center gap-1;
+}
+.productName {
+  @apply text-black text-[0.9rem] font-regular line-clamp-1;
+}
+.productDescription {
+  @apply text-sm font-regular line-clamp-2 leading-tight text-[gray];
+}

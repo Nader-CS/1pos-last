@@ -1,0 +1,3 @@
+.button {
+  @apply bg-[white] w-[100%] rounded-[2rem] uppercase;
+}

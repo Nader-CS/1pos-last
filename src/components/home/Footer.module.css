@@ -1,0 +1,12 @@
+.container {
+  @apply z-40 flex min-h-fit w-full flex-col items-center gap-1 py-3 bg-wildSand;
+}
+.footerContent {
+  @apply flex flex-col gap-1 text-center;
+}
+.footerText {
+  @apply font-regular text-black;
+}
+.footerLink {
+  @apply underline;
+}

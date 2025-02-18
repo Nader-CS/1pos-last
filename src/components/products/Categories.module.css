@@ -1,0 +1,8 @@
+.container {
+  @apply flex flex-row overflow-x-auto  my-2 ms-2 border-b-[1.5px];
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.container::-webkit-scrollbar {
+  display: none;
+}

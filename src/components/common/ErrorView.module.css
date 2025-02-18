@@ -1,0 +1,18 @@
+.container {
+  @apply flex h-full w-full flex-col items-center justify-center gap-5  bg-white;
+}
+.subContainer {
+  @apply flex flex-col items-center gap-2;
+}
+.opsText {
+  @apply m-0 p-0 font-[Bold] text-[1.7rem];
+}
+.wrongText {
+  @apply m-0 p-0 font-[medium] text-[1.3rem] text-center;
+}
+.button {
+  @apply bg-primary w-[80%] rounded-[2rem] uppercase justify-center;
+}
+.buttonText {
+  @apply m-0 p-0 font-[medium] text-[1rem] text-white;
+}
