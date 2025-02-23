@@ -2,8 +2,8 @@
   @apply whitespace-nowrap;
 }
 .category-button {
-  @apply bg-transparent shadow-none hover:bg-transparent px-3;
+  @apply bg-transparent px-3 shadow-none hover:bg-transparent;
 }
 .category-active {
-  @apply border-black border-b-[1.5px] rounded-none;
+  @apply rounded-none border-b-[1.5px] border-black;
 }

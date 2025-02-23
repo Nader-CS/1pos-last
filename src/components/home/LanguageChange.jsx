@@ -1,11 +1,11 @@
-"use client";
-import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/routing";
-import { useSearchParams } from "next/navigation";
-import styles from "./LanguageChange.module.css";
-import AppButton from "../common/AppButton";
-import { useDispatch } from "react-redux";
-import { api } from "@/services";
+'use client';
+import {useLocale} from 'next-intl';
+import {usePathname, useRouter} from '@/i18n/routing';
+import {useSearchParams} from 'next/navigation';
+import styles from './LanguageChange.module.css';
+import AppButton from '../common/AppButton';
+import {useDispatch} from 'react-redux';
+import {api} from '@/services';
 
 const LanguageChange = () => {
   const pathname = usePathname();
@@ -14,33 +14,31 @@ const LanguageChange = () => {
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
 
-  const handleLanguageChange = (language) => {
+  const handleLanguageChange = language => {
     dispatch(api.util.resetApiState());
     const queryParams = Object.fromEntries(searchParams.entries());
-    router.replace({ pathname, query: queryParams }, { locale: language });
+    router.replace({pathname, query: queryParams}, {locale: language});
   };
 
   return (
     <div className={styles.container}>
       <AppButton
         showArrow={false}
-        shouldTranslate={false}
-        disabled={locale == "en"}
-        name={"english"}
-        onClick={() => handleLanguageChange("en")}
+        disabled={locale == 'en'}
+        name={'english'}
+        onClick={() => handleLanguageChange('en')}
         buttonStyle={`${styles.button} ${
-          locale == "en" && styles.buttonActive
+          locale == 'en' && styles.buttonActive
         }`}
         buttonTxtStyle={styles.buttonTxtStyle}
       />
       <AppButton
         showArrow={false}
-        disabled={locale == "ar"}
-        name={"عربي"}
-        shouldTranslate={false}
-        onClick={() => handleLanguageChange("ar")}
+        disabled={locale == 'ar'}
+        name={'عربي'}
+        onClick={() => handleLanguageChange('ar')}
         buttonStyle={`${styles.button} ${
-          locale == "ar" && styles.buttonActive
+          locale == 'ar' && styles.buttonActive
         }`}
         buttonTxtStyle={styles.buttonTxtStyle}
       />

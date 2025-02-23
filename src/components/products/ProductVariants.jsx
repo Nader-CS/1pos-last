@@ -1,22 +1,22 @@
-"use client";
-import React, { memo, useCallback, useMemo } from "react";
-import Image from "next/image";
-import { useGetProductVariants } from "@/hooks";
-import { useTranslations } from "next-intl";
-import { convertEnglishNumbersToArabic } from "@/lib";
-import { AppText, CheckBox } from "../common";
-import { cup } from "@/assets";
-import styles from "./ProductVariants.module.css";
+'use client';
+import React, {memo, useCallback, useMemo} from 'react';
+import Image from 'next/image';
+import {useGetProductVariants} from '@/hooks';
+import {useTranslations} from 'next-intl';
+import {convertEnglishNumbersToArabic} from '@/lib';
+import {AppText, CheckBox} from '../common';
+import {cup} from '@/assets';
+import styles from './ProductVariants.module.css';
 
-const getSizes = (size) => {
-  if (size?.toLowerCase()?.includes("tims")) {
-    return { width: 10, height: 15 };
-  } else if (size?.toLowerCase() === "small") {
-    return { width: 15, height: 20 };
-  } else if (size?.toLowerCase() === "medium") {
-    return { width: 20, height: 25 };
+const getSizes = size => {
+  if (size?.toLowerCase()?.includes('tims')) {
+    return {width: 10, height: 15};
+  } else if (size?.toLowerCase() === 'small') {
+    return {width: 15, height: 20};
+  } else if (size?.toLowerCase() === 'medium') {
+    return {width: 20, height: 25};
   } else {
-    return { width: 25, height: 30 };
+    return {width: 25, height: 30};
   }
 };
 
@@ -28,7 +28,7 @@ const ProductVariants = ({
   setIsSearchingForVariant,
 }) => {
   const t = useTranslations();
-  const { handleOptionSelection, optionsTypes, selectedOptions } =
+  const {handleOptionSelection, optionsTypes, selectedOptions} =
     useGetProductVariants({
       setSelectedVariant,
       product,
@@ -37,40 +37,40 @@ const ProductVariants = ({
     });
 
   const getVariantContainerStyle = useCallback(
-    (optionType) =>
-      optionType?.option_type?.name?.toLowerCase() === "size"
-        ? "flex-row"
-        : "flex-col",
+    optionType =>
+      optionType?.option_type?.name?.toLowerCase() === 'size'
+        ? 'flex-row'
+        : 'flex-col',
 
-    []
+    [],
   );
 
   const getVariantCardStyle = useCallback(
     (optionType, value) =>
       selectedOptions[optionType?.option_type?.name] === value
-        ? "bg-primary"
-        : "bg-white",
-    [selectedOptions]
+        ? 'bg-primary'
+        : 'bg-white',
+    [selectedOptions],
   );
 
   const onVariantOptionSelection = useCallback(
     (optionType, value) =>
       handleOptionSelection(optionType?.option_type?.name, value),
-    [handleOptionSelection]
+    [handleOptionSelection],
   );
 
   const isVariantRadioButtonSelected = useCallback(
     (optionType, value) =>
       selectedOptions[optionType?.option_type?.name] === value,
-    [selectedOptions]
+    [selectedOptions],
   );
 
   const getColor = useCallback(
     (optionType, value) =>
       selectedOptions[optionType?.option_type?.name] !== value
-        ? "text-black"
-        : "text-white",
-    [selectedOptions]
+        ? 'text-black'
+        : 'text-white',
+    [selectedOptions],
   );
 
   const masterVariant = useMemo(() => product?.master, [product]);
@@ -84,23 +84,22 @@ const ProductVariants = ({
               <div className={styles.header}>
                 <AppText
                   className={styles.headerText}
-                  text={`${t("choose")} ${optionType?.option_type?.presentation} *`}
+                  text={`${t('choose')} ${optionType?.option_type?.presentation} *`}
                 />
               </div>
 
               <div
-                className={`${styles.mainContainer} ${getVariantContainerStyle(optionType)} `}
-              >
+                className={`${styles.mainContainer} ${getVariantContainerStyle(optionType)} `}>
                 {optionType?.values?.map((value, subIndex) => {
-                  if (optionType?.option_type?.name?.toLowerCase() === "size") {
-                    const variant = product?.variants?.find((variant) =>
+                  if (optionType?.option_type?.name?.toLowerCase() === 'size') {
+                    const variant = product?.variants?.find(variant =>
                       variant?.option_values?.some(
-                        (optionValue) => optionValue?.name == value?.name
-                      )
+                        optionValue => optionValue?.name == value?.name,
+                      ),
                     );
 
                     const price = Number(
-                      Number(variant?.price) - Number(masterVariant?.price)
+                      Number(variant?.price) - Number(masterVariant?.price),
                     ).toFixed(2);
 
                     return (
@@ -108,22 +107,21 @@ const ProductVariants = ({
                         <button
                           className={`${styles.button} ${getVariantCardStyle(
                             optionType,
-                            value?.name
+                            value?.name,
                           )}`}
                           onClick={() =>
                             onVariantOptionSelection(optionType, value?.name)
-                          }
-                        >
+                          }>
                           <Image
                             src={cup}
                             {...getSizes(value?.name)}
                             alt={value?.presentation}
-                            className={`${getColor(optionType, value?.name)}`}
+                            className={`${getColor(optionType, value?.name)} ${styles.variantCupsImage}`}
                           />
                           <AppText
                             classes={`${getColor(
                               optionType,
-                              value?.name
+                              value?.name,
                             )} ${styles.variantName} `}
                             text={value?.presentation}
                           />
@@ -143,7 +141,7 @@ const ProductVariants = ({
                         <CheckBox
                           selected={isVariantRadioButtonSelected(
                             optionType,
-                            value?.name
+                            value?.name,
                           )}
                         />
                         <AppText
@@ -156,7 +154,7 @@ const ProductVariants = ({
                 })}
               </div>
             </React.Fragment>
-          )
+          ),
       )}
     </>
   );

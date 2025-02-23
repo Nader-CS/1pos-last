@@ -1,4 +1,4 @@
-import { LoadingView } from "@/components";
+import {LoadingView} from '@/components';
 
 const Loading = () => {
   return <LoadingView isLoading={true} />;

@@ -1,9 +1,9 @@
-"use client";
-import AddonsType from "./AddonsType";
-import { memo, useCallback, useMemo, useState } from "react";
-import { useGetOrderQuery } from "@/services/order";
-import { getCookie } from "cookies-next";
-import { useAddonsSelection } from "@/hooks";
+'use client';
+import AddonsType from './AddonsType';
+import {memo, useCallback, useMemo, useState} from 'react';
+import {useGetOrderQuery} from '@/services/order';
+import {getCookie} from 'cookies-next';
+import {useAddonsSelection} from '@/hooks';
 
 const Addons = ({
   product,
@@ -16,11 +16,11 @@ const Addons = ({
   highlightedSection,
   setHighlightedSection,
 }) => {
-  const cartId = getCookie("cartId");
-  const { currentData: { orders: order } = {} } = useGetOrderQuery(cartId, {
+  const cartId = getCookie('cartId');
+  const {currentData: {orders: order} = {}} = useGetOrderQuery(cartId, {
     skip: !cartId,
   });
-  const { handleAddonsSelection } = useAddonsSelection({
+  const {handleAddonsSelection} = useAddonsSelection({
     product,
     selectedAddonsOptions,
     setSelectedAddonsOptions,
@@ -34,14 +34,14 @@ const Addons = ({
   const [expandedSection, setExpandedSection] = useState(null);
 
   const toggleSection = useCallback(
-    (index) => {
-      setExpandedSection((prevState) => (prevState === index ? null : index));
+    index => {
+      setExpandedSection(prevState => (prevState === index ? null : index));
     },
-    [setExpandedSection]
+    [setExpandedSection],
   );
   const requiredAddonsFirstSort = useMemo(
     () => product?.addon_types?.slice().sort((a, b) => b.required - a.required),
-    [product]
+    [product],
   );
 
   return (

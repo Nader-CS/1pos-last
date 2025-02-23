@@ -1,22 +1,22 @@
-import { FaMinus, FaPlus } from "react-icons/fa";
-import { AppText } from "../common";
-import { useHandleProductActions } from "@/hooks";
-import { getCookie } from "cookies-next";
-import { useLocale } from "next-intl";
-import { useMemo } from "react";
-import { useRouter } from "@/i18n/routing";
-import { convertEnglishNumbersToArabic } from "@/lib";
-import styles from "./ProductActionButton.module.css"; // Import the CSS module
-import { useGetOrderQuery } from "@/services";
+import {FaMinus, FaPlus} from 'react-icons/fa';
+import {AppText} from '../common';
+import {useHandleProductActions} from '@/hooks';
+import {getCookie} from 'cookies-next';
+import {useLocale} from 'next-intl';
+import {useMemo} from 'react';
+import {useRouter} from '@/i18n/routing';
+import {convertEnglishNumbersToArabic} from '@/lib';
+import styles from './ProductActionButton.module.css'; // Import the CSS module
+import {useGetOrderQuery} from '@/services';
 
-function ProductActionButton({ product }) {
+function ProductActionButton({product}) {
   const locale = useLocale();
   const router = useRouter();
-  const cartId = getCookie("cartId");
-  const { currentData: { orders: order } = {} } = useGetOrderQuery(cartId, {
+  const cartId = getCookie('cartId');
+  const {currentData: {orders: order} = {}} = useGetOrderQuery(cartId, {
     skip: !cartId,
   });
-  const { applyAction, quantity } = useHandleProductActions({
+  const {applyAction, quantity} = useHandleProductActions({
     product,
     variantId: product?.master?.id,
     order,
@@ -25,18 +25,18 @@ function ProductActionButton({ product }) {
   const shouldNavigateToProduct = useMemo(
     () =>
       !product?.out_of_stock && (product?.has_variants || product?.has_addons),
-    [product]
+    [product],
   );
 
   const shouldAddFromOutSide = useMemo(
     () =>
       !product?.has_variants && !product?.out_of_stock && !product?.has_addons,
-    [product]
+    [product],
   );
 
   const onAdd = () => {
     if (shouldAddFromOutSide) {
-      applyAction("add");
+      applyAction('add');
     } else if (shouldNavigateToProduct) {
       router.push(`products/${product?.id}`);
     }
@@ -47,23 +47,22 @@ function ProductActionButton({ product }) {
       <AppText
         text={`${convertEnglishNumbersToArabic(
           Number(product?.master?.price || 0)?.toFixed(2),
-          locale
+          locale,
         )} ${product?.master?.currency}`}
-        classes={`${styles.priceText} ${quantity > 0 ? styles.priceTextActive : ""}`}
+        classes={`${styles.priceText} ${quantity > 0 ? styles.priceTextActive : ''}`}
       />
       <div
-        className={`${styles.buttonContainer} ${quantity > 0 ? styles.buttonContainerActive : ""}`}
-      >
+        className={`${styles.buttonContainer} ${quantity > 0 ? styles.buttonContainerActive : ''}`}>
         {quantity > 0 ? (
           <div className={styles.buttonInnerContainer}>
-            <button onClick={() => applyAction("remove")}>
+            <button onClick={() => applyAction('remove')}>
               <FaMinus size={10} />
             </button>
             <AppText
               text={convertEnglishNumbersToArabic(Number(quantity), locale)}
               classes={styles.quantityText}
             />
-            <button onClick={() => applyAction("add")}>
+            <button onClick={() => applyAction('add')}>
               <FaPlus size={10} />
             </button>
           </div>

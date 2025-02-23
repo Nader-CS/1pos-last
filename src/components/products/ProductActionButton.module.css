@@ -1,10 +1,10 @@
 /* ProductActionButton.module.css */
 .container {
-  @apply flex h-full w-[20%] flex-col items-center justify-center gap-1;
+  @apply flex h-full w-[25%] flex-col items-center justify-center gap-1;
 }
 
 .priceText {
-  @apply text-[0.75rem] font-medium;
+  @apply font-medium text-[0.75rem];
 }
 
 .priceTextActive {
@@ -28,5 +28,5 @@
 }
 
 .quantityText {
-  @apply text-[0.75rem] font-medium text-primary;
+  @apply font-medium text-[0.75rem] text-primary;
 }

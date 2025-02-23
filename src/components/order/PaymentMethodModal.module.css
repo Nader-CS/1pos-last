@@ -1,0 +1,15 @@
+.container {
+  @apply bg-wildSand;
+}
+.header {
+  @apply text-left;
+}
+.headerContainer {
+  @apply flex items-center gap-2;
+}
+.image {
+  @apply h-auto w-auto;
+}
+.text {
+  @apply font-bold;
+}

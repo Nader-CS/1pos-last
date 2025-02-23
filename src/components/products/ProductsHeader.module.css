@@ -1,9 +1,9 @@
 .headerImage {
-  @apply h-[10rem] object-cover w-full;
+  @apply h-[10rem] w-full object-cover;
 }
 .container {
   @apply relative;
 }
 .headerText {
-  @apply absolute top-[50%] left-[10%] font-bold text-xl;
+  @apply absolute left-[10%] top-[50%] font-bold text-xl;
 }

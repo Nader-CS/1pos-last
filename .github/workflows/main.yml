@@ -1,0 +1,33 @@
+name: Lint and Syntax Check
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+      - ready_for_review
+
+jobs:
+  lint_and_syntax_check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Use Yarn
+        run: corepack prepare yarn@4.6.0 --activate
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Prettier check
+        run: yarn prettier:check
+
+      - name: Auto Assign
+        uses: kentaro-m/auto-assign-action@v2.0.0

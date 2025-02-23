@@ -2,7 +2,7 @@
   @apply flex justify-center gap-2 text-black;
 }
 .button {
-  @apply bg-transparent shadow-none hover:bg-transparent border-none;
+  @apply border-none bg-transparent shadow-none hover:bg-transparent;
 }
 .buttonTxtStyle {
   @apply font-regular;

@@ -1,4 +1,4 @@
-import createNextIntlPlugin from "next-intl/plugin";
+import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -8,7 +8,7 @@ export default withNextIntl({
   images: {
     remotePatterns: [
       {
-        protocol: "https",
+        protocol: 'https',
         hostname: process.env.IMAGES_HOST,
       },
     ],

@@ -12,5 +12,12 @@
   "place_order": "وضع الطلب",
   "add_to_cart": "إضافه للسله",
   "choose": "إختار",
-  "required": "مطلوب"
+  "required": "مطلوب",
+  "page_not_found": "الصفحه غير موجوده",
+  "sorry_the_page_you_are_looking_for_does_not_exist": ".عذرًا، الصفحة التي تبحث عنها غير موجودة",
+  "go_back_to_the_homepage": ".العودة إلى الصفحة الرئيسية",
+  "ordering_method": "طريقه الطلب",
+  "return_to_previous_page": "عد إلي الصفحه الرئيسيه",
+  "items_total": "مجموع المنتجات",
+  "grand_total": "المجموع الإجمالي"
 }

@@ -21,7 +21,7 @@
   @apply mt-4 space-y-4;
 }
 .addonSubContainer {
-  @apply flex cursor-pointer items-center justify-between;
+  @apply h-auto w-[100%] cursor-pointer items-center justify-between gap-0 bg-transparent p-0 shadow-none hover:bg-transparent;
 }
 .addonItem {
   @apply flex items-center gap-2 space-x-3;

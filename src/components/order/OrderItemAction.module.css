@@ -1,0 +1,9 @@
+.container {
+  @apply flex h-[30px] w-[30%] max-w-32 items-center justify-between;
+}
+.button {
+  @apply flex h-full w-[35%] items-center justify-center rounded-md bg-black;
+}
+.quantity {
+  @apply flex h-full w-[45%] items-center justify-center bg-wildSand font-[medium] text-[0.85rem] text-black;
+}

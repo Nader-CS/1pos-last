@@ -1,7 +1,7 @@
-import Image from "next/image";
-import styles from "./Landing.module.css";
-import OrderNow from "./OrderNow";
-import { logo } from "@/assets";
+import Image from 'next/image';
+import styles from './Landing.module.css';
+import OrderNow from './OrderNow';
+import {logo} from '@/assets';
 
 const Landing = () => {
   return (

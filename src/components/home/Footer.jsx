@@ -1,9 +1,9 @@
-import { useTranslations } from "next-intl";
-import Image from "next/image";
-import styles from "./Footer.module.css";
-import { Link } from "@/i18n/routing";
-import LanguageChange from "./LanguageChange";
-import { one_pay } from "@/assets";
+import {useTranslations} from 'next-intl';
+import Image from 'next/image';
+import styles from './Footer.module.css';
+import {Link} from '@/i18n/routing';
+import LanguageChange from './LanguageChange';
+import {one_pay} from '@/assets';
 
 const Footer = () => {
   const t = useTranslations();
@@ -15,9 +15,9 @@ const Footer = () => {
       <div className={styles.footerContent}>
         <div>
           <p className={styles.footerText}>
-            {t("by_using_one_pay_you_accept")}{" "}
-            <Link href={"/"} prefetch={false} className={styles.footerLink}>
-              {t("terms_and_conditions")}
+            {t('by_using_one_pay_you_accept')}{' '}
+            <Link href={'/'} prefetch={false} className={styles.footerLink}>
+              {t('terms_and_conditions')}
             </Link>
           </p>
         </div>

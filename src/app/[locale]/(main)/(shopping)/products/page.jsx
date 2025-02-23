@@ -1,5 +1,5 @@
-import { Categories, ErrorView, Products, ProductsHeader } from "@/components";
-import { getCategories } from "@/services";
+import {Categories, ErrorView, Products, ProductsHeader} from '@/components';
+import {getCategories} from '@/services';
 
 const ProductsPage = async () => {
   const categoriesResponse = await getCategories();

@@ -1,11 +1,12 @@
-"use client";
-import { useEffect, useMemo, useRef } from "react";
-import Collapsible from "react-collapsible";
-import _ from "lodash";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import { useTranslations } from "next-intl";
-import { AppText, CheckBox } from "../common";
-import styles from "./AddonsType.module.css";
+'use client';
+import {useEffect, useMemo, useRef} from 'react';
+import Collapsible from 'react-collapsible';
+import _ from 'lodash';
+import {FaAngleDown, FaAngleUp} from 'react-icons/fa';
+import {useTranslations} from 'next-intl';
+import {AppText, CheckBox} from '../common';
+import styles from './AddonsType.module.css';
+import AppButton from '../common/AppButton';
 
 const AddonsType = ({
   addonType,
@@ -22,15 +23,15 @@ const AddonsType = ({
   const t = useTranslations();
   const selectedCount = useMemo(
     () =>
-      selectedAddonsOptions?.filter((id) =>
-        addonType?.addons.some((a) => a.id === id)
+      selectedAddonsOptions?.filter(id =>
+        addonType?.addons.some(a => a.id === id),
       )?.length || 0,
-    [selectedAddonsOptions, addonType]
+    [selectedAddonsOptions, addonType],
   );
 
   const limitTextColor = useMemo(
-    () => (selectedCount >= addonType?.limit ? "text-green" : "text-red"),
-    [selectedCount, addonType]
+    () => (selectedCount >= addonType?.limit ? 'text-green' : 'text-red'),
+    [selectedCount, addonType],
   );
 
   useEffect(() => {
@@ -57,7 +58,7 @@ const AddonsType = ({
   useEffect(() => {
     if (sectionRef.current) {
       const y = sectionRef.current.offsetTop;
-      requiredAddonRefs.current[index] = { y };
+      requiredAddonRefs.current[index] = {y};
     }
   }, [sectionRef, requiredAddonRefs, index]);
 
@@ -67,12 +68,11 @@ const AddonsType = ({
     <div ref={sectionRef}>
       <div
         className={styles.headerContainer}
-        onClick={() => toggleSection(index)}
-      >
+        onClick={() => toggleSection(index)}>
         <div className={styles.headerSubContainer}>
           <AppText
             classes={styles.boldText}
-            text={`${addonType?.presentation} ${addonType?.required ? "*" : ""}`}
+            text={`${addonType?.presentation} ${addonType?.required ? '*' : ''}`}
           />
 
           {shouldShowLimit && (
@@ -86,7 +86,7 @@ const AddonsType = ({
         </div>
         {addonType?.required && (
           <div className={styles.requiredContainer}>
-            <AppText text={t("required")} classes={styles.requiredText} />
+            <AppText text={t('required')} classes={styles.requiredText} />
           </div>
         )}
       </div>
@@ -100,13 +100,12 @@ const AddonsType = ({
                 !selectedAddonsOptions?.includes(addon?.id)) ||
               (!addonType?.multiselect && addonType?.limit > 1);
             return (
-              <div
+              <AppButton
                 key={idx}
-                className={styles.addonSubContainer}
+                buttonStyle={styles.addonSubContainer}
                 onClick={() =>
                   !isDisabled && handleAddonsSelection(addon, addon?.id)
-                }
-              >
+                }>
                 <div className={styles.addonItem}>
                   <CheckBox
                     selected={selectedAddonsOptions?.includes(addon?.id)}
@@ -119,7 +118,7 @@ const AddonsType = ({
                 {addon?.price > 0 && (
                   <AppText text={`+ ${addon?.price} ${currency}`} />
                 )}
-              </div>
+              </AppButton>
             );
           })}
         </div>

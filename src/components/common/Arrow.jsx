@@ -1,10 +1,10 @@
-import { useLocale } from "next-intl";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import styles from "./Arrow.module.css";
+import {useLocale} from 'next-intl';
+import {FaChevronLeft, FaChevronRight} from 'react-icons/fa';
+import styles from './Arrow.module.css';
 
 const Arrow = () => {
   const locale = useLocale();
-  const ChevronIcon = locale === "ar" ? FaChevronLeft : FaChevronRight;
+  const ChevronIcon = locale === 'ar' ? FaChevronLeft : FaChevronRight;
 
   return <ChevronIcon className={styles.arrow} />;
 };

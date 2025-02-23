@@ -1,69 +1,69 @@
-"use client";
+'use client';
 
-import { api } from "./api";
+import {api} from './api';
 
 export const orderApi = api.injectEndpoints({
-  endpoints: (build) => ({
+  endpoints: build => ({
     createOrder: build.mutation({
-      query: (data) => ({
-        url: "api/v1/orders/create_cart",
-        method: "POST",
+      query: data => ({
+        url: 'api/v1/orders/create_cart',
+        method: 'POST',
         body: data,
       }),
     }),
     getOrder: build.query({
-      query: (id) => ({
+      query: id => ({
         url: `api/v1/orders/${id}`,
-        method: "GET",
+        method: 'GET',
       }),
       keepUnusedDataFor: 0,
-      providesTags: ["Order"],
+      providesTags: ['Order'],
     }),
     addCartItem: build.mutation({
-      query: (data) => ({
+      query: data => ({
         url: `api/v1/orders/${data.orderId}/line_items`,
-        method: "POST",
+        method: 'POST',
         body: {
           line_item: data.line_item,
         },
       }),
-      invalidatesTags: ["Order"],
+      invalidatesTags: ['Order'],
     }),
     updateCartItem: build.mutation({
-      query: (data) => ({
+      query: data => ({
         url: `api/v1/orders/${data.orderId}/line_items/${data.line_item_id}`,
-        method: "PUT",
+        method: 'PUT',
         body: {
           line_item: data.line_item,
         },
       }),
-      invalidatesTags: ["Order"],
+      invalidatesTags: ['Order'],
     }),
     deleteCartItem: build.mutation({
-      query: (data) => ({
+      query: data => ({
         url: `api/v1/orders/${data.orderId}/line_items/${data.line_item_id}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
-      invalidatesTags: ["Order"],
+      invalidatesTags: ['Order'],
     }),
     updateOrderDeliveryMethod: build.mutation({
-      query: (data) => ({
+      query: data => ({
         url: `api/v1/orders/${data?.orderId}`,
-        method: "PUT",
+        method: 'PUT',
         body: data.body,
       }),
-      invalidatesTags: ["Order"],
+      invalidatesTags: ['Order'],
     }),
 
     updateCartItemAddons: build.mutation({
-      query: (data) => ({
+      query: data => ({
         url: `api/v1/orders/${data.orderId}/line_items/${data.line_item_id}`,
-        method: "PUT",
+        method: 'PUT',
         body: {
           line_item: data.line_item,
         },
       }),
-      invalidatesTags: ["Order"],
+      invalidatesTags: ['Order'],
     }),
   }),
   overrideExisting: true,

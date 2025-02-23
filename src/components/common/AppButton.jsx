@@ -1,55 +1,61 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/routing";
-import { useMemo } from "react";
-import Arrow from "./Arrow";
-import AppText from "./AppText";
-import styles from "./AppButton.module.css";
-import { Spinner } from ".";
+import {Button} from '@/components/ui/button';
+import {Link} from '@/i18n/routing';
+import {useMemo} from 'react';
+import Arrow from './Arrow';
+import AppText from './AppText';
+import styles from './AppButton.module.css';
+import {Spinner} from '.';
 
 const AppButton = ({
-  renderIcon,
+  children,
   name,
-  disabled,
   onClick,
-  showArrow = false,
-  buttonStyle = "",
   isLoading = false,
+  disabled = false,
   isLink = false,
-  href = null,
-  buttonTxtStyle = "",
+  href = '#',
+  showArrow = false,
+  buttonStyle = '',
+  renderIcon: Icon = null,
+  loaderSize = 25,
+  buttonTxtStyle,
+  ...props
 }) => {
   const isDisabled = useMemo(
     () => disabled || isLoading,
-    [disabled, isLoading]
+    [disabled, isLoading],
   );
 
-  const Content = () => (
-    <>
-      {isLoading && <Spinner size={25} />}
-      <div className={styles.container}>
-        {renderIcon?.()}
-        <AppText text={name} classes={buttonTxtStyle} />
-      </div>
-      {showArrow && <Arrow />}
-    </>
-  );
+  const content = () => {
+    const shouldRenderHeader = Icon || name;
+    return (
+      <>
+        {isLoading && <Spinner size={25} />}
+        {shouldRenderHeader && (
+          <div className={styles.headerContainer}>
+            {Icon && <Icon />}
+            {name && <AppText text={name} classes={buttonTxtStyle} />}
+          </div>
+        )}
+        {children}
+        {showArrow && <Arrow />}
+      </>
+    );
+  };
 
-  return (
+  return isLink ? (
+    <Link href={href} className={`${styles.button} ${buttonStyle}`} {...props}>
+      {content()}
+    </Link>
+  ) : (
     <Button
       disabled={isDisabled}
       onClick={onClick}
-      asChild={isLink}
       className={`${styles.button} ${buttonStyle}`}
-    >
-      {isLink ? (
-        <Link href={href}>
-          <Content />
-        </Link>
-      ) : (
-        <Content />
-      )}
+      {...props}>
+      {content()}
     </Button>
   );
 };

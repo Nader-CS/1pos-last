@@ -1,26 +1,26 @@
 .productLastName {
-  @apply text-3xl text-primary font-bold;
+  @apply font-bold text-3xl text-primary;
 }
 .actionsContainer {
-  @apply flex flex-row items-center justify-center gap-10 bg-primary py-5;
+  @apply flex h-[4rem] flex-row items-center justify-center gap-10 bg-primary;
 }
 .quantity {
-  @apply text-white font-bold;
+  @apply font-bold text-white;
 }
 .whiteText {
   @apply text-white;
 }
 .addToCartButton {
-  @apply bg-primary w-[100%] flex justify-center items-center py-[2rem] rounded-none;
+  @apply flex w-[100%] items-center justify-center rounded-none bg-primary py-[2rem];
 }
 .mainContainer {
-  @apply p-5 pb-20;
+  @apply p-5;
 }
 .headerContainer {
   @apply flex items-center justify-between;
 }
 .priceContainer {
-  @apply rounded-full bg-black px-10 py-2;
+  @apply rounded-full bg-black px-[1.3rem] py-2;
 }
 .descContainer {
   @apply mb-4 mt-2;
@@ -34,9 +34,6 @@
 .addonsContainer {
   @apply flex flex-col gap-2;
 }
-.actionsMainContainer {
-  @apply absolute bottom-0 w-[100%];
-}
 .description {
-  @apply text-doveGray text-sm;
+  @apply text-sm text-doveGray;
 }

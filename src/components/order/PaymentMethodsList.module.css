@@ -1,0 +1,12 @@
+.container {
+  @apply my-6;
+}
+.subContainer {
+  @apply my-4 flex w-[100%] items-center justify-start gap-4 rounded-md bg-white px-4 py-4;
+}
+.image {
+  @apply h-auto w-auto;
+}
+.text {
+  @apply font-bold;
+}

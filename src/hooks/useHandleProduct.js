@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useGetOrderQuery } from "@/services/order";
-import { getCookie } from "cookies-next";
-import { convertEnglishNumbersToArabic } from "@/lib";
+import {useEffect, useMemo, useRef, useState} from 'react';
+import {useGetOrderQuery} from '@/services/order';
+import {getCookie} from 'cookies-next';
+import {convertEnglishNumbersToArabic} from '@/lib';
 
-const useHandleProduct = ({ product }) => {
+const useHandleProduct = ({product}) => {
   const [isSearchingForVariant, setIsSearchingForVariant] = useState(true);
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [selectedAddonsOptions, setSelectedAddonsOptions] = useState([]);
   const [highlightedSection, setHighlightedSection] = useState(null);
-  const cartId = getCookie("cartId");
+  const cartId = getCookie('cartId');
 
-  const { currentData: { orders: order } = {} } = useGetOrderQuery(cartId, {
+  const {currentData: {orders: order} = {}} = useGetOrderQuery(cartId, {
     skip: !cartId,
   });
 
@@ -21,7 +21,7 @@ const useHandleProduct = ({ product }) => {
   const currency = useMemo(() => product?.master?.currency, [product]);
 
   const lastProductWord = useMemo(() => {
-    const splitting = product?.presentation?.trim().split(" ");
+    const splitting = product?.presentation?.trim().split(' ');
     return splitting?.[splitting?.length - 1]?.trim();
   }, [product]);
 
@@ -29,29 +29,29 @@ const useHandleProduct = ({ product }) => {
     () =>
       product?.presentation
         ?.trim()
-        ?.split(" ")
+        ?.split(' ')
         ?.slice(0, -1)
-        ?.join(" ")
+        ?.join(' ')
         ?.trim(),
-    [product]
+    [product],
   );
 
   const isAddonsExist = useMemo(
     () => product?.addon_types?.length > 0,
-    [product]
+    [product],
   );
 
   const selectedVariantPrice = useMemo(() => {
     let price = Number(selectedVariant?.price) || 0;
 
     const addonTypes = product?.addon_types || [];
-    addonTypes.forEach((addonType) => {
-      const selectedAddons = addonType?.addons?.filter((addon) =>
+    addonTypes.forEach(addonType => {
+      const selectedAddons = addonType?.addons?.filter(addon =>
         selectedAddonsOptions?.find(
-          (selectAddonId) => selectAddonId === addon?.id
-        )
+          selectAddonId => selectAddonId === addon?.id,
+        ),
       );
-      selectedAddons?.forEach((addon) => (price += Number(addon?.price)));
+      selectedAddons?.forEach(addon => (price += Number(addon?.price)));
     });
     return convertEnglishNumbersToArabic(Number(price).toFixed(2));
   }, [
@@ -66,17 +66,17 @@ const useHandleProduct = ({ product }) => {
 
     // Get all required addon types
     const requiredAddonTypes = product.addon_types.filter(
-      (type) => type.required
+      type => type.required,
     );
 
     // If there are no required addon types, return true
     if (requiredAddonTypes.length === 0) return true;
 
     // Check if all required addon types have at least one selected addon
-    return requiredAddonTypes.every((type) => {
+    return requiredAddonTypes.every(type => {
       // Get the selected addons for the current type
-      const selectedAddonsForType = selectedAddonsOptions.filter((addonId) =>
-        type.addons.some((addon) => addon.id === addonId)
+      const selectedAddonsForType = selectedAddonsOptions.filter(addonId =>
+        type.addons.some(addon => addon.id === addonId),
       );
       // Check if selected addon match limit for the type
       return selectedAddonsForType.length >= type?.limit;
@@ -84,10 +84,10 @@ const useHandleProduct = ({ product }) => {
   }, [product, selectedAddonsOptions]);
 
   const handleAllRequiredAddonsNotSelected = () => {
-    const requiredAddonType = product?.addon_types?.find((addonType) => {
+    const requiredAddonType = product?.addon_types?.find(addonType => {
       if (addonType.required) {
-        const selectedAddonsCount = addonType.addons.filter((addon) =>
-          selectedAddonsOptions.includes(addon.id)
+        const selectedAddonsCount = addonType.addons.filter(addon =>
+          selectedAddonsOptions.includes(addon.id),
         ).length;
         return selectedAddonsCount < addonType.limit;
       }
@@ -95,19 +95,19 @@ const useHandleProduct = ({ product }) => {
     });
 
     if (requiredAddonType) {
-      setHighlightedSection({ ...requiredAddonType });
+      setHighlightedSection({...requiredAddonType});
     }
   };
 
   useEffect(() => {
     if (order && selectedVariant) {
       const targetVariant = order?.line_items?.find(
-        (lineItems) => lineItems?.line_item?.variant?.id == selectedVariant?.id
+        lineItems => lineItems?.line_item?.variant?.id == selectedVariant?.id,
       );
 
       if (targetVariant?.line_item?.addons) {
         setSelectedAddonsOptions(
-          targetVariant?.line_item?.addons?.map((addon) => addon?.id)
+          targetVariant?.line_item?.addons?.map(addon => addon?.id),
         );
       } else {
         setSelectedAddonsOptions([]);

@@ -1,38 +1,39 @@
-"use client";
+'use client';
 
-import { getActiveCategory } from "@/selectors";
-import { useGetProductsQuery } from "@/services";
-import { getCookie } from "cookies-next";
-import { useDispatch, useSelector } from "react-redux";
-import { ErrorView, LoadingView, PlaceOrderButton } from "../common";
-import { ProductList } from ".";
-import styles from "./Products.module.css";
-import { useSwipeable } from "react-swipeable";
-import { setCategory } from "@/slices";
-import { useMemo } from "react";
-import { useGetOrderQuery } from "@/services";
+import {getActiveCategory} from '@/selectors';
+import {PlaceOrderButton} from '../common';
+import {getCookie} from 'cookies-next';
+import {useDispatch, useSelector} from 'react-redux';
+import {ProductList} from '.';
+import styles from './Products.module.css';
+import {useSwipeable} from 'react-swipeable';
+import {setCategory} from '@/slices';
+import {useMemo} from 'react';
+import {useGetOrderQuery} from '@/services';
 
-const Products = ({ categories }) => {
+const Products = ({categories}) => {
   const currentCategory = useSelector(getActiveCategory);
   const dispatch = useDispatch();
-  const storeId = getCookie("storeId");
-  const cartId = getCookie("cartId");
+  const storeId = getCookie('storeId');
+  const cartId = getCookie('cartId');
+  const currentIndex = useMemo(
+    () => categories?.findIndex(c => c?.id == currentCategory),
+    [categories, currentCategory],
+  );
 
-  const currentIndex = categories?.findIndex((c) => c?.id == currentCategory);
-
-  const { currentData: { orders: order } = {}, isFetching } = useGetOrderQuery(
+  const {currentData: {orders: order} = {}, isFetching} = useGetOrderQuery(
     cartId,
     {
       skip: !cartId,
-    }
+    },
   );
 
-  const handleSwipe = (direction) => {
+  const handleSwipe = direction => {
     let newIndex = currentIndex;
 
-    if (direction == "left" && currentIndex < categories?.length - 1) {
+    if (direction == 'left' && currentIndex < categories?.length - 1) {
       newIndex++;
-    } else if (direction == "right" && currentIndex > 0) {
+    } else if (direction == 'right' && currentIndex > 0) {
       newIndex--;
     }
 
@@ -42,41 +43,29 @@ const Products = ({ categories }) => {
   };
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => handleSwipe("left"),
-    onSwipedRight: () => handleSwipe("right"),
+    onSwipedLeft: () => handleSwipe('left'),
+    onSwipedRight: () => handleSwipe('right'),
     trackMouse: true,
   });
 
-  const {
-    data: { products, pagination } = {},
-    isError: isGettingProductsError,
-    refetch: refetchProducts,
-    isFetching: isFetchingProducts,
-  } = useGetProductsQuery(
-    {
-      category_id: currentCategory,
-      store_id: storeId,
-    },
-    { skip: !storeId || !currentCategory }
-  );
-
   const shouldShowPlaceOrderButton = useMemo(
     () => order?.line_items?.length > 0,
-    [order]
+    [order],
   );
 
   return (
     <>
       <div {...handlers} className={styles.container}>
-        <LoadingView isLoading={isFetchingProducts}>
-          <ErrorView
-            hasError={isGettingProductsError}
-            onRetry={refetchProducts}
-            showRetryButtonLoading={isFetchingProducts}
-          >
-            <ProductList products={products} />
-          </ErrorView>
-        </LoadingView>
+        {categories?.map(
+          category =>
+            category?.id === currentCategory && (
+              <ProductList
+                key={category.id}
+                storeId={storeId}
+                categoryId={category.id}
+              />
+            ),
+        )}
       </div>
       {shouldShowPlaceOrderButton && <PlaceOrderButton cartId={cartId} />}
     </>

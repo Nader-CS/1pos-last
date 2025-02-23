@@ -1,0 +1,27 @@
+.container {
+  @apply relative flex h-screen flex-col items-center justify-center bg-cover bg-center;
+}
+.container::before {
+  content: '';
+  @apply absolute inset-0 bg-black opacity-50;
+  background-image: url('../assets/images/landing.webp');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+.title {
+  @apply text-4xl text-primary;
+}
+
+.message {
+  @apply w-[70%] text-base;
+}
+.button {
+  @apply flex justify-center rounded-full bg-black;
+}
+.buttonText {
+  @apply px-4 text-white;
+}
+.subContainer {
+  @apply flex w-[70%] flex-col items-center justify-center gap-8 rounded-lg bg-white px-2 py-[4rem] text-center shadow-lg;
+}

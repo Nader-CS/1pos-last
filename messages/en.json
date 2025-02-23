@@ -12,5 +12,12 @@
   "place_order": "place order",
   "add_to_cart": "add to cart",
   "choose": "Choose",
-  "required": "required"
+  "required": "required",
+  "ordering_method": "Ordering Method",
+  "page_not_found": "Page Not Found",
+  "sorry_the_page_you_are_looking_for_does_not_exist": "Sorry, the page you're looking for does not exist.",
+  "go_back_to_the_homepage": "Go back to the homepage.",
+  "return_to_previous_page": "return to previous page",
+  "items_total": "items total",
+  "grand_total": "grand total"
 }

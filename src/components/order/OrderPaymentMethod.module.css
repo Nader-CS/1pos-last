@@ -1,0 +1,9 @@
+.imageContainer {
+  @apply mb-3 flex items-center gap-3;
+}
+.image {
+  @apply h-auto w-auto;
+}
+.headerText {
+  @apply font-bold;
+}

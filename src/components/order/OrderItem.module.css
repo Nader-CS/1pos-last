@@ -1,0 +1,21 @@
+.container {
+  @apply flex items-center justify-between rounded-2xl p-3 shadow-lg;
+}
+.subContainer {
+  @apply flex max-w-[65%] items-center gap-2;
+}
+.productImageContainer {
+  @apply flex h-[55px] w-[55px] items-center justify-center;
+}
+.productImage {
+  @apply h-auto w-auto rounded-lg border-[1px] border-mercury;
+}
+.productDetailsContainer {
+  @apply flex flex-col gap-1;
+}
+.productName {
+  @apply font-[regular] text-[1rem];
+}
+.productPrice {
+  @apply font-[bold] text-[0.8rem];
+}

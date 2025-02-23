@@ -1,5 +1,5 @@
 .container {
-  @apply flex flex-row overflow-x-auto  my-2 ms-2 border-b-[1.5px];
+  @apply my-2 ms-2 flex flex-row overflow-x-auto border-b-[1.5px];
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

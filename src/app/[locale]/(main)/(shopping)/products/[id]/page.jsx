@@ -1,7 +1,7 @@
-import { ErrorView, Product } from "@/components";
-import { getProduct } from "@/services";
+import {ErrorView, Product} from '@/components';
+import {getProduct} from '@/services';
 
-const ProductScreen = async ({ params }) => {
+const ProductScreen = async ({params}) => {
   const id = (await params)?.id;
   const productResponse = await getProduct(id);
 

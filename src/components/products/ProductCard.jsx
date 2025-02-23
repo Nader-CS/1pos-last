@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useRouter } from "@/i18n/routing";
-import { AppText } from "../common";
-import { logo } from "@/assets";
-import { useMemo } from "react";
-import styles from "./ProductCard.module.css";
-import { ProductActionButton } from ".";
+import Image from 'next/image';
+import {useRouter} from '@/i18n/routing';
+import {AppText} from '../common';
+import {logo} from '@/assets';
+import {useMemo} from 'react';
+import styles from './ProductCard.module.css';
+import {ProductActionButton} from '.';
 
-function ProductCard({ product }) {
+function ProductCard({product}) {
   const productImage = useMemo(
     () => product?.images_urls?.[0] || logo,
-    [product]
+    [product],
   );
 
   const router = useRouter();

@@ -1,5 +1,5 @@
 .container {
-  @apply z-40 flex min-h-fit w-full flex-col items-center gap-1 py-3 bg-wildSand;
+  @apply z-40 flex min-h-fit w-full flex-col items-center gap-1 bg-wildSand py-3;
 }
 .footerContent {
   @apply flex flex-col gap-1 text-center;

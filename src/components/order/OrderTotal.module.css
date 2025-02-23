@@ -1,0 +1,15 @@
+.container {
+  @apply flex flex-col gap-4;
+}
+.itemContainer {
+  @apply flex justify-between;
+}
+.bold {
+  @apply font-bold;
+}
+.itemsTotalText {
+  @apply text-doveGray;
+}
+.smallerText {
+  @apply text-sm;
+}

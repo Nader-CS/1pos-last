@@ -1,3 +1,10 @@
 .container {
-  @apply flex flex-col gap-4;
+  @apply flex max-h-[100vh] flex-col gap-4 overflow-auto;
+  scrollbar-width: none;
+}
+.container::-webkit-scrollbar {
+  display: none;
+}
+.spinnerContainer {
+  @apply my-4 flex items-center justify-center;
 }

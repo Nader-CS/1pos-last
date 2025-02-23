@@ -1,4 +1,4 @@
-import { Landing } from "@/components";
+import {Landing} from '@/components';
 
 const HomePage = async () => {
   return <Landing />;

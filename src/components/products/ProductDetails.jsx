@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
 import {
   useGetOrderQuery,
   useUpdateCartItemAddonsMutation,
-} from "@/services/order";
-import { useCallback } from "react";
-import _ from "lodash";
-import { useHandleProduct, useHandleProductActions } from "@/hooks";
-import { Addons, ProductVariants } from ".";
-import { getCookie } from "cookies-next";
-import { FaPlus, FaMinus } from "react-icons/fa6";
-import { useTranslations } from "next-intl";
-import AppButton from "../common/AppButton";
-import { AppText, Spinner } from "../common";
-import { convertEnglishNumbersToArabic } from "@/lib";
-import styles from "./ProductDetails.module.css";
+} from '@/services/order';
+import {useCallback} from 'react';
+import _ from 'lodash';
+import {useHandleProduct, useHandleProductActions} from '@/hooks';
+import {Addons, ProductVariants} from '.';
+import {getCookie} from 'cookies-next';
+import {FaPlus, FaMinus} from 'react-icons/fa6';
+import {useTranslations} from 'next-intl';
+import AppButton from '../common/AppButton';
+import {AppText, Spinner} from '../common';
+import {convertEnglishNumbersToArabic} from '@/lib';
+import styles from './ProductDetails.module.css';
 
-const ProductDetails = ({ product }) => {
-  const cartId = getCookie("cartId");
-  const { currentData: { orders: order } = {} } = useGetOrderQuery(cartId, {
+const ProductDetails = ({product}) => {
+  const cartId = getCookie('cartId');
+  const {currentData: {orders: order} = {}} = useGetOrderQuery(cartId, {
     skip: !cartId,
   });
   const t = useTranslations();
@@ -45,7 +45,7 @@ const ProductDetails = ({ product }) => {
     product,
   });
 
-  const { applyAction, quantity, isAdding } = useHandleProductActions({
+  const {applyAction, quantity, isAdding} = useHandleProductActions({
     product,
     variantId: selectedVariant?.id,
     order,
@@ -53,7 +53,7 @@ const ProductDetails = ({ product }) => {
   });
 
   const renderProductName = useCallback(() => {
-    return product?.presentation?.split(" ")?.length > 1 ? (
+    return product?.presentation?.split(' ')?.length > 1 ? (
       <>
         <AppText text={_.capitalize(ProductNameExceptLastWord)} />
         <AppText
@@ -70,7 +70,7 @@ const ProductDetails = ({ product }) => {
     if (!allRequiredAddonsSelected) {
       handleAllRequiredAddonsNotSelected();
     } else {
-      applyAction("add");
+      applyAction('add');
     }
   };
 
@@ -86,14 +86,14 @@ const ProductDetails = ({ product }) => {
     if (quantity > 0) {
       return (
         <div className={styles.actionsContainer}>
-          <button onClick={() => applyAction("add")}>
+          <button onClick={() => applyAction('add')}>
             <FaPlus className={styles.whiteText} />
           </button>
           <AppText
             text={convertEnglishNumbersToArabic(quantity)}
             classes={styles.quantity}
           />
-          <button onClick={() => applyAction("remove")}>
+          <button onClick={() => applyAction('remove')}>
             <FaMinus className={styles.whiteText} />
           </button>
         </div>
@@ -103,7 +103,7 @@ const ProductDetails = ({ product }) => {
     return (
       <AppButton
         onClick={onAddToCart}
-        name={t("add_to_cart")}
+        name={t('add_to_cart')}
         buttonTxtStyle={styles.whiteText}
         buttonStyle={styles.addToCartButton}
       />

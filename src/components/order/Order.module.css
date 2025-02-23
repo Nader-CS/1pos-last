@@ -1,0 +1,15 @@
+.container {
+  @apply flex flex-1 flex-col bg-wildSand;
+}
+.orderItems {
+  @apply flex w-full flex-col gap-3 bg-white px-5 py-7;
+}
+.orderMethod {
+  @apply px-5 py-7;
+}
+.paymentMethods {
+  @apply px-5;
+}
+.orderTotal {
+  @apply px-5 py-7;
+}

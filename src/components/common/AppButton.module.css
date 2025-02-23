@@ -1,9 +1,12 @@
 .button {
-  @apply flex h-14 items-center justify-between rounded-lg text-base capitalize font-regular;
+  @apply flex h-14 items-center justify-between rounded-lg font-regular text-base capitalize;
 }
 .container {
-  @apply flex items-center gap-3 justify-center;
+  @apply flex grow items-center justify-between gap-3;
 }
 .spinner {
   @apply animate-spin text-primary;
+}
+.headerContainer {
+  @apply flex items-center gap-4;
 }

@@ -1,12 +1,13 @@
-"use client";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { debounce } from "lodash";
+'use client';
+import {useCallback, useEffect, useMemo, useState} from 'react';
+import {debounce} from 'lodash';
 import {
   useAddCartItemMutation,
   useDeleteCartItemMutation,
   useUpdateCartItemMutation,
-} from "@/services/order";
-import useAlerts from "./useAlerts";
+} from '@/services/order';
+import useAlerts from './useAlerts';
+import serverRevalidateTag from '@/lib/server-actions';
 
 const useHandleProductActions = ({
   product,
@@ -16,35 +17,35 @@ const useHandleProductActions = ({
 }) => {
   const [quantity, setQuantity] = useState(null);
   const item = order?.line_items?.find(
-    (item) => item?.line_item?.variant?.id === variantId,
+    item => item?.line_item?.variant?.id === variantId,
   );
-  const { errorAlert } = useAlerts();
+  const {errorAlert} = useAlerts();
 
   useEffect(() => {
     setQuantity(item?.line_item?.quantity ?? 0);
   }, [item]);
 
-  const [addCartItem, { isLoading: isAdding }] = useAddCartItemMutation({
-    fixedCacheKey: "addToCart",
+  const [addCartItem, {isLoading: isAdding}] = useAddCartItemMutation({
+    fixedCacheKey: 'addToCart',
   });
   const [updateCartItem] = useUpdateCartItemMutation({
-    fixedCacheKey: "updateCart",
+    fixedCacheKey: 'updateCart',
   });
-  const [deleteCartItem, { isLoading: isDeleting }] = useDeleteCartItemMutation(
-    {
-      fixedCacheKey: "deleteCart",
-    },
-  );
+  const [deleteCartItem, {isLoading: isDeleting}] = useDeleteCartItemMutation({
+    fixedCacheKey: 'deleteCart',
+  });
 
   const debouncedUpdateCartItem = useMemo(
     () =>
-      debounce((params) => {
-        updateCartItem(params).then((res) => {
+      debounce(params => {
+        updateCartItem(params).then(res => {
           if (res?.error) {
             const error = res?.error?.error || res?.error?.errors?.[0];
             errorAlert(error);
             setQuantity(params?.actionQuantity);
+            return;
           }
+          serverRevalidateTag('Order');
         });
       }, 1500),
     [updateCartItem],
@@ -54,17 +55,17 @@ const useHandleProductActions = ({
     (action, actionQuantity = quantity) => {
       let newQuantity = actionQuantity;
       const selectedVariant = product?.variants?.find(
-        (variant) => variant?.id == variantId,
+        variant => variant?.id == variantId,
       );
-      if (action === "add") {
+      if (action === 'add') {
         newQuantity = quantity + 1;
-      } else if (action === "remove") {
+      } else if (action === 'remove') {
         newQuantity = quantity - 1;
       }
 
       if (newQuantity < 0) return;
 
-      const isAdding = newQuantity == 1 && action == "add";
+      const isAdding = newQuantity == 1 && action == 'add';
       const price =
         selectedVariant?.price ||
         product?.variants?.price ||
@@ -80,15 +81,15 @@ const useHandleProductActions = ({
           ...(isAdding && {
             sku,
           }),
-          ...(isAdding && { addon_ids: selectedAddonsOptions }),
+          ...(isAdding && {addon_ids: selectedAddonsOptions}),
         },
         storeId: order?.store?.id,
         line_item_id: item?.line_item?.id,
         actionQuantity,
       };
 
-      if (action === "add" && newQuantity === 1) {
-        addCartItem(params).then((res) => {
+      if (action === 'add' && newQuantity === 1) {
+        addCartItem(params).then(res => {
           if (res.error) {
             const error =
               res?.error?.errors?.addons?.[0] ||
@@ -96,16 +97,20 @@ const useHandleProductActions = ({
               res?.error?.errors?.[0];
             errorAlert(error);
             setQuantity(actionQuantity);
+            return;
           }
+          serverRevalidateTag('Order');
         });
       } else if (newQuantity === 0) {
         debouncedUpdateCartItem.cancel();
-        deleteCartItem(params).then((res) => {
+        deleteCartItem(params).then(res => {
           if (res?.error) {
             const error = res?.error?.error || res?.error?.errors?.[0];
             errorAlert(error);
             setQuantity(actionQuantity);
+            return;
           }
+          serverRevalidateTag('Order');
         });
       } else {
         debouncedUpdateCartItem(params);

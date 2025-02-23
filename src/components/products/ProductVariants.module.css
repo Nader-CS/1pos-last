@@ -2,7 +2,7 @@
   @apply my-3;
 }
 .headerText {
-  @apply text-gray-800 mb-4 text-lg font-bold;
+  @apply mb-4 font-bold text-lg text-gray-800;
 }
 
 .mainContainer {
@@ -15,7 +15,7 @@
   @apply flex h-[4rem] w-[4rem] flex-col items-center justify-evenly rounded-md p-1;
 }
 .variantName {
-  @apply text-xs text-center;
+  @apply text-center text-xs;
 }
 .variantPriceAddition {
   @apply mt-2 text-center text-xs;
@@ -24,5 +24,8 @@
   @apply mb-4 flex items-center gap-2;
 }
 .columnVariantText {
-  @apply text-gray-800 text-sm;
+  @apply text-sm text-gray-800;
+}
+.variantCupsImage {
+  @apply h-auto w-auto;
 }
