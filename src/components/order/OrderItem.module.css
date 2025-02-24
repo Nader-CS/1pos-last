@@ -14,8 +14,8 @@
   @apply flex flex-col gap-1;
 }
 .productName {
-  @apply font-[regular] text-[1rem];
+  @apply text-[1rem];
 }
 .productPrice {
-  @apply font-[bold] text-[0.8rem];
+  @apply font-bold text-[0.8rem];
 }

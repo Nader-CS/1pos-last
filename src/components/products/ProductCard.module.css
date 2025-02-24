@@ -5,8 +5,9 @@
   @apply flex w-[75%] cursor-pointer gap-2;
 }
 .productImg {
-  @apply h-auto w-auto;
+  @apply h-[60px] w-[60px] object-cover;
 }
+
 .details {
   @apply flex flex-col justify-center gap-1;
 }

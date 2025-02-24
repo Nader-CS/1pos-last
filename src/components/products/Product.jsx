@@ -9,8 +9,7 @@ const Product = ({product}) => {
         <div className={styles.imageSubContainer}>
           <Image
             src={product?.images_urls?.[0]}
-            width={300}
-            height={300}
+            fill
             className={styles.productImage}
             priority
             alt={product?.presentation || 'product'}

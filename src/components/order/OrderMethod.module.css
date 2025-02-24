@@ -2,7 +2,7 @@
   @apply font-bold;
 }
 .methodsContainer {
-  @apply my-4 grid grid-cols-2 gap-4;
+  @apply mb-2 grid grid-cols-2 gap-4;
 }
 .button {
   @apply flex cursor-pointer items-center justify-between gap-4 rounded-md bg-white px-4 py-2 shadow-none hover:bg-transparent;
@@ -11,5 +11,5 @@
   @apply h-auto w-auto;
 }
 .row {
-  @apply flex items-center gap-4;
+  @apply mb-1 flex items-center gap-4;
 }

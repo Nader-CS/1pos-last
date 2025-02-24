@@ -1,5 +1,5 @@
 .button {
-  @apply flex h-14 items-center justify-between rounded-lg font-regular text-base capitalize;
+  @apply flex h-14 items-center justify-between rounded-lg text-base capitalize;
 }
 .container {
   @apply flex grow items-center justify-between gap-3;

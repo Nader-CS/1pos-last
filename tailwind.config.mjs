@@ -12,9 +12,13 @@ export default {
     extend: {
       fontSize,
       fontFamily: {
-        regular: ['regular', 'sans-serif'],
-        medium: ['medium', 'sans-serif'],
-        bold: ['bold', 'sans-serif'],
+        montserrat: ['Montserrat'],
+      },
+      fontWeight: {
+        regular: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
       },
       colors: colors,
       animation: {

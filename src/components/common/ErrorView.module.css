@@ -5,14 +5,14 @@
   @apply flex flex-col items-center gap-2;
 }
 .opsText {
-  @apply m-0 p-0 font-[Bold] text-[1.7rem];
+  @apply m-0 p-0 font-bold text-[1.7rem];
 }
 .wrongText {
-  @apply m-0 p-0 text-center font-[medium] text-[1.3rem];
+  @apply m-0 p-0 text-center font-medium text-[1.3rem];
 }
 .button {
   @apply w-[80%] justify-center rounded-[2rem] bg-primary uppercase;
 }
 .buttonText {
-  @apply m-0 p-0 font-[medium] text-[1rem] text-white;
+  @apply m-0 p-0 font-medium text-[1rem] text-white;
 }

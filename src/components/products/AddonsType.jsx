@@ -66,8 +66,8 @@ const AddonsType = ({
 
   return (
     <div ref={sectionRef}>
-      <div
-        className={styles.headerContainer}
+      <AppButton
+        buttonStyle={styles.headerContainer}
         onClick={() => toggleSection(index)}>
         <div className={styles.headerSubContainer}>
           <AppText
@@ -89,7 +89,7 @@ const AddonsType = ({
             <AppText text={t('required')} classes={styles.requiredText} />
           </div>
         )}
-      </div>
+      </AppButton>
 
       <Collapsible open={expandedSection === index} aria-controls={Date.now()}>
         <div className={styles.addonContainer}>

@@ -1,0 +1,6 @@
+.button {
+  @apply h-[5rem] w-[100%] justify-center rounded-none;
+}
+.buttonTxtStyle {
+  @apply font-bold text-white;
+}

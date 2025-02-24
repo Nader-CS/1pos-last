@@ -100,7 +100,7 @@ export const getOrder = async id => {
         'Content-Type': 'application/json',
         'Accept-Language': locale,
       },
-      cache: 'force-cache',
+      cache: 'no-store',
       next: {tags: ['Order']},
     },
   );

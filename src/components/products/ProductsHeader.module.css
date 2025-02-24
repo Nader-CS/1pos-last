@@ -2,7 +2,7 @@
   @apply h-[10rem] w-full object-cover;
 }
 .container {
-  @apply relative;
+  @apply relative h-[10rem] overflow-hidden;
 }
 .headerText {
   @apply absolute left-[10%] top-[50%] font-bold text-xl;

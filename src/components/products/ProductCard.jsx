@@ -1,7 +1,5 @@
-'use client';
-
 import Image from 'next/image';
-import {useRouter} from '@/i18n/routing';
+import {Link} from '@/i18n/routing';
 import {AppText} from '../common';
 import {logo} from '@/assets';
 import {useMemo} from 'react';
@@ -14,15 +12,9 @@ function ProductCard({product}) {
     [product],
   );
 
-  const router = useRouter();
-
-  const navigateToProduct = () => {
-    router.push(`/products/${product?.id}`);
-  };
-
   return (
     <div className={styles.container}>
-      <div className={styles.subContainer} onClick={navigateToProduct}>
+      <Link className={styles.subContainer} href={`/products/${product?.id}`}>
         <Image
           src={productImage}
           alt={product?.presentation}
@@ -39,7 +31,7 @@ function ProductCard({product}) {
             classes={styles.productDescription}
           />
         </div>
-      </div>
+      </Link>
       <ProductActionButton product={product} />
     </div>
   );

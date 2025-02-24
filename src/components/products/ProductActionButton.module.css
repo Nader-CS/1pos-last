@@ -30,3 +30,6 @@
 .quantityText {
   @apply font-medium text-[0.75rem] text-primary;
 }
+.button {
+  @apply h-auto bg-transparent p-0 shadow-none hover:bg-transparent;
+}

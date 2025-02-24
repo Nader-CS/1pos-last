@@ -1,4 +1,10 @@
-import {OrderItems, OrderMethod, OrderPaymentMethod, OrderTotal} from '.';
+import {
+  OrderItems,
+  OrderMethod,
+  OrderPaymentMethod,
+  OrderTotal,
+  OrderCheckout,
+} from '.';
 import styles from './Order.module.css';
 
 const Order = ({order}) => {
@@ -15,6 +21,9 @@ const Order = ({order}) => {
       </div>
       <div className={styles.orderTotal}>
         <OrderTotal order={order} />
+      </div>
+      <div className={styles.checkout}>
+        <OrderCheckout />
       </div>
     </div>
   );

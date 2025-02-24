@@ -8,6 +8,7 @@ import {useRouter} from '@/i18n/routing';
 import {convertEnglishNumbersToArabic} from '@/lib';
 import styles from './ProductActionButton.module.css'; // Import the CSS module
 import {useGetOrderQuery} from '@/services';
+import AppButton from '../common/AppButton';
 
 function ProductActionButton({product}) {
   const locale = useLocale();
@@ -55,21 +56,25 @@ function ProductActionButton({product}) {
         className={`${styles.buttonContainer} ${quantity > 0 ? styles.buttonContainerActive : ''}`}>
         {quantity > 0 ? (
           <div className={styles.buttonInnerContainer}>
-            <button onClick={() => applyAction('remove')}>
+            <AppButton
+              onClick={() => applyAction('remove')}
+              buttonStyle={styles.button}>
               <FaMinus size={10} />
-            </button>
+            </AppButton>
             <AppText
               text={convertEnglishNumbersToArabic(Number(quantity), locale)}
               classes={styles.quantityText}
             />
-            <button onClick={() => applyAction('add')}>
+            <AppButton
+              onClick={() => applyAction('add')}
+              buttonStyle={styles.button}>
               <FaPlus size={10} />
-            </button>
+            </AppButton>
           </div>
         ) : (
-          <button onClick={onAdd}>
+          <AppButton onClick={onAdd} buttonStyle={styles.button}>
             <FaPlus size={12} className={styles.addButton} />
-          </button>
+          </AppButton>
         )}
       </div>
     </div>
