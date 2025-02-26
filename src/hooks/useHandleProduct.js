@@ -6,7 +6,6 @@ import {getCookie} from 'cookies-next';
 import {convertEnglishNumbersToArabic} from '@/lib';
 
 const useHandleProduct = ({product}) => {
-  const [isSearchingForVariant, setIsSearchingForVariant] = useState(true);
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [selectedAddonsOptions, setSelectedAddonsOptions] = useState([]);
   const [highlightedSection, setHighlightedSection] = useState(null);
@@ -122,11 +121,9 @@ const useHandleProduct = ({product}) => {
     selectedAddonsOptions,
     allRequiredAddonsSelected,
     handleAllRequiredAddonsNotSelected,
-    isSearchingForVariant,
     ProductNameExceptLastWord,
     lastProductWord,
     setSelectedVariant,
-    setIsSearchingForVariant,
     isAddonsExist,
     setSelectedAddonsOptions,
     requiredAddonRefs,

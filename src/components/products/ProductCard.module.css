@@ -2,7 +2,7 @@
   @apply flex h-[60px] w-[100%] items-center justify-between py-1;
 }
 .subContainer {
-  @apply flex w-[75%] cursor-pointer gap-2;
+  @apply flex w-[75%] cursor-pointer justify-start gap-2;
 }
 .productImg {
   @apply h-[60px] w-[60px] object-cover;
@@ -12,8 +12,8 @@
   @apply flex flex-col justify-center gap-1;
 }
 .productName {
-  @apply line-clamp-1 font-regular text-[0.9rem] text-black;
+  @apply line-clamp-1 text-[0.9rem] font-regular text-black;
 }
 .productDescription {
-  @apply line-clamp-2 font-regular text-sm leading-tight text-[gray];
+  @apply line-clamp-2 text-sm font-regular leading-tight text-[gray];
 }

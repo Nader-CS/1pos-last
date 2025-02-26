@@ -17,5 +17,5 @@
   @apply text-[1rem];
 }
 .productPrice {
-  @apply font-bold text-[0.8rem];
+  @apply text-[0.8rem] font-bold;
 }

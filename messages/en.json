@@ -20,5 +20,8 @@
   "return_to_previous_page": "return to previous page",
   "items_total": "items total",
   "grand_total": "grand total",
-  "checkout": "Checkout"
+  "checkout": "Checkout",
+  "branch": "Branch",
+  "table": "Table",
+  "zone": "Zone"
 }

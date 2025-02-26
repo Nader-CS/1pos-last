@@ -2,7 +2,7 @@
   @apply my-3;
 }
 .headerText {
-  @apply mb-4 font-bold text-lg text-gray-800;
+  @apply mb-4 text-lg font-bold text-gray-800;
 }
 
 .mainContainer {

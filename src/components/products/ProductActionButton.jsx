@@ -17,7 +17,7 @@ function ProductActionButton({product}) {
   const {currentData: {orders: order} = {}} = useGetOrderQuery(cartId, {
     skip: !cartId,
   });
-  const {applyAction, quantity} = useHandleProductActions({
+  const {applyAction, productTotalQuantity} = useHandleProductActions({
     product,
     variantId: product?.master?.id,
     order,
@@ -43,6 +43,14 @@ function ProductActionButton({product}) {
     }
   };
 
+  const onRemove = () => {
+    if (shouldAddFromOutSide) {
+      applyAction('remove');
+    } else if (shouldNavigateToProduct) {
+      router.push(`products/${product?.id}`);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <AppText
@@ -50,24 +58,23 @@ function ProductActionButton({product}) {
           Number(product?.master?.price || 0)?.toFixed(2),
           locale,
         )} ${product?.master?.currency}`}
-        classes={`${styles.priceText} ${quantity > 0 ? styles.priceTextActive : ''}`}
+        classes={`${styles.priceText} ${productTotalQuantity > 0 ? styles.priceTextActive : ''}`}
       />
       <div
-        className={`${styles.buttonContainer} ${quantity > 0 ? styles.buttonContainerActive : ''}`}>
-        {quantity > 0 ? (
+        className={`${styles.buttonContainer} ${productTotalQuantity > 0 ? styles.buttonContainerActive : ''}`}>
+        {productTotalQuantity > 0 ? (
           <div className={styles.buttonInnerContainer}>
-            <AppButton
-              onClick={() => applyAction('remove')}
-              buttonStyle={styles.button}>
+            <AppButton onClick={onRemove} buttonStyle={styles.button}>
               <FaMinus size={10} />
             </AppButton>
             <AppText
-              text={convertEnglishNumbersToArabic(Number(quantity), locale)}
+              text={convertEnglishNumbersToArabic(
+                Number(productTotalQuantity),
+                locale,
+              )}
               classes={styles.quantityText}
             />
-            <AppButton
-              onClick={() => applyAction('add')}
-              buttonStyle={styles.button}>
+            <AppButton onClick={onAdd} buttonStyle={styles.button}>
               <FaPlus size={10} />
             </AppButton>
           </div>

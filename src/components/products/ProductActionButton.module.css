@@ -4,7 +4,7 @@
 }
 
 .priceText {
-  @apply font-medium text-[0.75rem];
+  @apply text-[0.75rem] font-medium;
 }
 
 .priceTextActive {
@@ -28,7 +28,7 @@
 }
 
 .quantityText {
-  @apply font-medium text-[0.75rem] text-primary;
+  @apply text-[0.75rem] font-medium text-primary;
 }
 .button {
   @apply h-auto bg-transparent p-0 shadow-none hover:bg-transparent;

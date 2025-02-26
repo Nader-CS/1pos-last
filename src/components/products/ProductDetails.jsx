@@ -32,7 +32,6 @@ const ProductDetails = ({product}) => {
     selectedVariantPrice,
     selectedVariant,
     setSelectedVariant,
-    setIsSearchingForVariant,
     allRequiredAddonsSelected,
     isAddonsExist,
     requiredAddonRefs,
@@ -45,7 +44,7 @@ const ProductDetails = ({product}) => {
     product,
   });
 
-  const {applyAction, quantity, isAdding} = useHandleProductActions({
+  const {applyAction, variantQuantity, isAdding} = useHandleProductActions({
     product,
     variantId: selectedVariant?.id,
     order,
@@ -83,14 +82,14 @@ const ProductDetails = ({product}) => {
       );
     }
 
-    if (quantity > 0) {
+    if (variantQuantity > 0) {
       return (
         <div className={styles.actionsContainer}>
           <button onClick={() => applyAction('add')}>
             <FaPlus className={styles.whiteText} />
           </button>
           <AppText
-            text={convertEnglishNumbersToArabic(quantity)}
+            text={convertEnglishNumbersToArabic(variantQuantity)}
             classes={styles.quantity}
           />
           <button onClick={() => applyAction('remove')}>
@@ -137,7 +136,6 @@ const ProductDetails = ({product}) => {
             setSelectedVariant={setSelectedVariant}
             selectedVariant={selectedVariant}
             currency={currency}
-            setIsSearchingForVariant={setIsSearchingForVariant}
           />
         </div>
 

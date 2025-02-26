@@ -16,13 +16,13 @@ function OrderItemAction({item}) {
   const {currentData: {orders: order} = {}} = useGetOrderQuery(cartId, {
     skip: !cartId,
   });
-  const {applyAction, quantity} = useHandleProductActions({
+  const {applyAction, variantQuantity} = useHandleProductActions({
     product: item?.line_item,
     variantId: item?.line_item?.variant?.id,
     order,
   });
 
-  if (!quantity) {
+  if (!variantQuantity) {
     return;
   }
 
@@ -31,7 +31,7 @@ function OrderItemAction({item}) {
       <AppButton
         onClick={() => applyAction('remove')}
         buttonStyle={styles.button}>
-        {quantity > 1 ? (
+        {variantQuantity > 1 ? (
           <FaMinus size={11} color={'white'} />
         ) : (
           <FaRegTrashAlt size={11} color={'white'} />
@@ -39,7 +39,7 @@ function OrderItemAction({item}) {
       </AppButton>
 
       <AppText
-        text={convertEnglishNumbersToArabic(Number(quantity), locale)}
+        text={convertEnglishNumbersToArabic(Number(variantQuantity), locale)}
         classes={styles.quantity}
       />
       <AppButton onClick={() => applyAction('add')} className={styles.button}>

@@ -5,6 +5,7 @@ import {logo} from '@/assets';
 import {useMemo} from 'react';
 import styles from './ProductCard.module.css';
 import {ProductActionButton} from '.';
+import AppButton from '../common/AppButton';
 
 function ProductCard({product}) {
   const productImage = useMemo(
@@ -14,7 +15,10 @@ function ProductCard({product}) {
 
   return (
     <div className={styles.container}>
-      <Link className={styles.subContainer} href={`/products/${product?.id}`}>
+      <AppButton
+        buttonStyle={styles.subContainer}
+        isLink
+        href={`/products/${product?.id}`}>
         <Image
           src={productImage}
           alt={product?.presentation}
@@ -31,7 +35,7 @@ function ProductCard({product}) {
             classes={styles.productDescription}
           />
         </div>
-      </Link>
+      </AppButton>
       <ProductActionButton product={product} />
     </div>
   );

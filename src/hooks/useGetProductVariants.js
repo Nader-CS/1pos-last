@@ -8,7 +8,6 @@ const useGetProductVariants = ({
   product,
   variantId,
   selectedVariant,
-  setIsSearchingForVariant,
 }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
   const [optionsTypes, setOptionsTypes] = useState(null);
@@ -39,9 +38,7 @@ const useGetProductVariants = ({
   }, [product]);
 
   const handleOptionSelection = (optionType, value) => {
-    setIsSearchingForVariant(true);
-    if (selectedOptions[optionType] === value)
-      return setIsSearchingForVariant(false);
+    if (selectedOptions[optionType] === value) return;
     setSelectedOptions(prev => ({...prev, [optionType]: value}));
   };
 
@@ -62,11 +59,10 @@ const useGetProductVariants = ({
       );
       setSelectedVariant(selectedVariant || product?.master);
     }
-    setIsSearchingForVariant(false);
   }, [product, optionsTypes, selectedOptions]);
 
   useEffect(() => {
-    if (!product) return;
+    if (!product || selectedVariant) return;
 
     const defaultVariant = variantId
       ? product.variants?.find(variant => variant.id == variantId)

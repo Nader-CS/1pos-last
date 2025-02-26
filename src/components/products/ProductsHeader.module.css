@@ -5,5 +5,5 @@
   @apply relative h-[10rem] overflow-hidden;
 }
 .headerText {
-  @apply absolute left-[10%] top-[50%] font-bold text-xl;
+  @apply absolute left-[10%] top-[50%] text-xl font-bold;
 }

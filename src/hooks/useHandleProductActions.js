@@ -15,15 +15,31 @@ const useHandleProductActions = ({
   order,
   selectedAddonsOptions,
 }) => {
-  const [quantity, setQuantity] = useState(null);
+  const [variantQuantity, setVariantQuantity] = useState(null);
+  const [productTotalQuantity, setProductTotalQuantity] = useState(null);
   const item = order?.line_items?.find(
     item => item?.line_item?.variant?.id === variantId,
   );
   const {errorAlert} = useAlerts();
 
   useEffect(() => {
-    setQuantity(item?.line_item?.quantity ?? 0);
+    setVariantQuantity(item?.line_item?.quantity ?? 0);
   }, [item]);
+
+  useEffect(() => {
+    const totalProductItems = order?.line_items?.reduce(
+      (accumulator, currentValue) => {
+        const isProductItem =
+          currentValue?.line_item?.variant?.product?.id === product?.id;
+        if (isProductItem) {
+          return accumulator + currentValue?.line_item?.quantity;
+        }
+        return accumulator;
+      },
+      0,
+    );
+    setProductTotalQuantity(totalProductItems ?? 0);
+  }, [order, product]);
 
   const [addCartItem, {isLoading: isAdding}] = useAddCartItemMutation({
     fixedCacheKey: 'addToCart',
@@ -42,7 +58,7 @@ const useHandleProductActions = ({
           if (res?.error) {
             const error = res?.error?.error || res?.error?.errors?.[0];
             errorAlert(error);
-            setQuantity(params?.actionQuantity);
+            setVariantQuantity(params?.actionQuantity);
             return;
           }
           serverRevalidateTag('Order');
@@ -52,15 +68,16 @@ const useHandleProductActions = ({
   );
 
   const applyAction = useCallback(
-    (action, actionQuantity = quantity) => {
+    (action, actionQuantity = variantQuantity) => {
       let newQuantity = actionQuantity;
       const selectedVariant = product?.variants?.find(
         variant => variant?.id == variantId,
       );
       if (action === 'add') {
-        newQuantity = quantity + 1;
+        newQuantity = variantQuantity + 1;
+        console.log(newQuantity);
       } else if (action === 'remove') {
-        newQuantity = quantity - 1;
+        newQuantity = variantQuantity - 1;
       }
 
       if (newQuantity < 0) return;
@@ -96,7 +113,7 @@ const useHandleProductActions = ({
               res?.error?.error ||
               res?.error?.errors?.[0];
             errorAlert(error);
-            setQuantity(actionQuantity);
+            setVariantQuantity(actionQuantity);
             return;
           }
           serverRevalidateTag('Order');
@@ -107,7 +124,7 @@ const useHandleProductActions = ({
           if (res?.error) {
             const error = res?.error?.error || res?.error?.errors?.[0];
             errorAlert(error);
-            setQuantity(actionQuantity);
+            setVariantQuantity(actionQuantity);
             return;
           }
           serverRevalidateTag('Order');
@@ -115,7 +132,8 @@ const useHandleProductActions = ({
       } else {
         debouncedUpdateCartItem(params);
       }
-      setQuantity(newQuantity);
+      setVariantQuantity(newQuantity);
+      setProductTotalQuantity(prev => prev - variantQuantity + newQuantity);
     },
     [
       addCartItem,
@@ -124,14 +142,15 @@ const useHandleProductActions = ({
       order,
       variantId,
       product,
-      quantity,
+      variantQuantity,
       selectedAddonsOptions,
     ],
   );
 
   return {
     applyAction,
-    quantity,
+    variantQuantity,
+    productTotalQuantity,
     isAdding,
     debouncedUpdateCartItem,
     deleteCartItem,

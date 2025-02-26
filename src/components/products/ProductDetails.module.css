@@ -1,5 +1,5 @@
 .productLastName {
-  @apply font-bold text-3xl text-primary;
+  @apply text-3xl font-bold text-primary;
 }
 .actionsContainer {
   @apply flex h-[4rem] flex-row items-center justify-center gap-10 bg-primary;

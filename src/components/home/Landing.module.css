@@ -1,5 +1,5 @@
 .container {
-  @apply relative flex h-screen justify-center text-white;
+  @apply relative flex h-screen items-center justify-center text-white;
 }
 .background {
   @apply absolute inset-0 bg-cover bg-center;
@@ -17,4 +17,31 @@
 }
 .buttonsContainer {
   @apply mt-[10rem] w-[90%] max-w-[300px];
+}
+.mainContentContainer {
+  @apply my-[2rem] flex w-[70%] flex-col gap-4 rounded-3xl bg-white p-4 py-8 md:w-[50%] lg:w-[40%];
+}
+.content {
+  @apply flex items-center justify-between;
+}
+.col1 {
+  @apply flex w-[45%] items-center gap-2;
+}
+.col2 {
+  @apply w-[45%];
+}
+.col1IconContainer {
+  @apply rounded-full p-2;
+  -webkit-box-shadow: 2px 1px 29px -7px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 2px 1px 29px -7px rgba(0, 0, 0, 0.6);
+  box-shadow: 2px 1px 29px -7px rgba(0, 0, 0, 0.6);
+}
+.icon {
+  @apply text-black;
+}
+.branch {
+  @apply text-end text-sm;
+}
+.branchName {
+  @apply text-end text-sm text-doveGray;
 }

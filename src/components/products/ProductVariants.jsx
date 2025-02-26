@@ -25,7 +25,6 @@ const ProductVariants = ({
   product,
   currency,
   selectedVariant,
-  setIsSearchingForVariant,
 }) => {
   const t = useTranslations();
   const {handleOptionSelection, optionsTypes, selectedOptions} =
@@ -33,7 +32,6 @@ const ProductVariants = ({
       setSelectedVariant,
       product,
       selectedVariant,
-      setIsSearchingForVariant,
     });
 
   const getVariantContainerStyle = useCallback(

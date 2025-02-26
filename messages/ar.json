@@ -20,5 +20,8 @@
   "return_to_previous_page": "عد إلي الصفحه الرئيسيه",
   "items_total": "مجموع المنتجات",
   "grand_total": "المجموع الإجمالي",
-  "checkout": "إطلب الان"
+  "checkout": "إطلب الان",
+  "branch": "الفرع",
+  "table": "الطاوله",
+  "zone": "المنطقه"
 }

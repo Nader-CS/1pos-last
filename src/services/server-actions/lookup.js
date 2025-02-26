@@ -107,3 +107,24 @@ export const getOrder = async id => {
   const transformedResponse = await response?.json();
   return transformedResponse;
 };
+
+export const getStore = async id => {
+  const appCookies = await cookies();
+  const publicToken = appCookies.get('token')?.value;
+  const locale = appCookies.get('NEXT_LOCALE')?.value || 'en';
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}api/v1/stores/${id}`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${publicToken}`,
+        'Content-Type': 'application/json',
+        'Accept-Language': locale,
+      },
+      cache: 'force-cache',
+    },
+  );
+  const transformedResponse = await response?.json();
+  return transformedResponse;
+};
