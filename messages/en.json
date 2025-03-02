@@ -23,5 +23,6 @@
   "checkout": "Checkout",
   "branch": "Branch",
   "table": "Table",
-  "zone": "Zone"
+  "zone": "Zone",
+  "payment": "Payment"
 }

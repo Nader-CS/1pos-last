@@ -21,6 +21,7 @@ const AppButton = ({
   renderIcon: Icon = null,
   loaderSize = 25,
   buttonTxtStyle,
+  spinnerStyle,
   ...props
 }) => {
   const isDisabled = useMemo(
@@ -32,7 +33,7 @@ const AppButton = ({
     const shouldRenderHeader = Icon || name;
     return (
       <>
-        {isLoading && <Spinner size={25} />}
+        {isLoading && <Spinner size={25} {...spinnerStyle} />}
         {shouldRenderHeader && (
           <div className={styles.headerContainer}>
             {Icon && <Icon />}

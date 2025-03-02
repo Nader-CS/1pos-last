@@ -1,5 +1,5 @@
 export const colors = {
-  primary: '#33BDCF',
+  primary: '#cb142e',
   secondary: '#838383',
   polar: '#EFFAFB',
   bigStone: '#172A3A',
@@ -8,4 +8,7 @@ export const colors = {
   doveGray: '#707070',
   mercury: '#E4E4E4',
   silver: '#BEBEBE',
+  white: '#ffffff',
+  black: '#000000',
+  red_robin: '#79311E',
 };

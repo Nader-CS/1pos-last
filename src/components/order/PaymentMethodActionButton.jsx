@@ -15,10 +15,14 @@ const PaymentMethodActionButton = ({paymentMethods, order}) => {
   const selectedPaymentMethod = useSelector(getPaymentMethod);
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isApplePayAvailable = useMemo(
+    () => (isIOS || isMacOs) && window?.ApplePaySession?.canMakePayments?.(),
+    [isIOS, isMacOs],
+  );
   const preferredMethod = useMemo(
     () =>
       paymentMethods?.find(({name}) =>
-        name?.toLowerCase().includes(isIOS || isMacOs ? 'apple' : 'credit'),
+        name?.toLowerCase().includes(isApplePayAvailable ? 'apple' : 'credit'),
       ),
     [paymentMethods],
   );

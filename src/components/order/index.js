@@ -8,3 +8,4 @@ export {default as PaymentMethodActionButton} from './PaymentMethodActionButton'
 export {default as PaymentMethodModal} from './PaymentMethodModal';
 export {default as OrderTotal} from './OrderTotal';
 export {default as OrderCheckout} from './OrderCheckout';
+export {default as TapPayment} from './TapPayment';

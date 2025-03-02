@@ -7,6 +7,7 @@ import {convertEnglishNumbersToArabic} from '@/lib';
 import {AppText, CheckBox} from '../common';
 import {cup} from '@/assets';
 import styles from './ProductVariants.module.css';
+import {cup2} from '@/assets';
 
 const getSizes = size => {
   if (size?.toLowerCase()?.includes('tims')) {
@@ -46,8 +47,13 @@ const ProductVariants = ({
   const getVariantCardStyle = useCallback(
     (optionType, value) =>
       selectedOptions[optionType?.option_type?.name] === value
-        ? 'bg-primary'
+        ? 'border-[1.5px] border-primary'
         : 'bg-white',
+    [selectedOptions],
+  );
+  const getVariantImage = useCallback(
+    (optionType, value) =>
+      selectedOptions[optionType?.option_type?.name] === value ? cup2 : cup,
     [selectedOptions],
   );
 
@@ -111,7 +117,7 @@ const ProductVariants = ({
                             onVariantOptionSelection(optionType, value?.name)
                           }>
                           <Image
-                            src={cup}
+                            src={getVariantImage(optionType, value?.name)}
                             {...getSizes(value?.name)}
                             alt={value?.presentation}
                             className={`${getColor(optionType, value?.name)} ${styles.variantCupsImage}`}

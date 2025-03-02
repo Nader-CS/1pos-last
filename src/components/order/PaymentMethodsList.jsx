@@ -13,10 +13,11 @@ import {useMemo} from 'react';
 const PaymentMethodsList = ({paymentMethods, setIsModalOpen}) => {
   const dispatch = useDispatch();
   const selectedMethod = useSelector(getPaymentMethod);
-  const shouldShowApplePay = useMemo(
-    () => [isMacOs, isIOS].some(Boolean),
-    [isMacOs, isIOS],
+  const isApplePayAvailable = useMemo(
+    () => (isIOS || isMacOs) && window?.ApplePaySession?.canMakePayments?.(),
+    [isIOS, isMacOs],
   );
+  console.log(isApplePayAvailable);
 
   const onChangePaymentMethod = method => {
     if (method?.id == selectedMethod?.id) {
@@ -30,7 +31,7 @@ const PaymentMethodsList = ({paymentMethods, setIsModalOpen}) => {
     <div className={styles.container}>
       {paymentMethods?.map((method, index) => {
         const isApplePay = method?.name?.toLowerCase()?.includes('apple');
-        if (isApplePay && !shouldShowApplePay) {
+        if (isApplePay && !isApplePayAvailable) {
           return;
         }
         return (

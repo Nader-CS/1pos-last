@@ -75,7 +75,6 @@ const useHandleProductActions = ({
       );
       if (action === 'add') {
         newQuantity = variantQuantity + 1;
-        console.log(newQuantity);
       } else if (action === 'remove') {
         newQuantity = variantQuantity - 1;
       }

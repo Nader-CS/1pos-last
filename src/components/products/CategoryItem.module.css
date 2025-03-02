@@ -7,3 +7,6 @@
 .category-active {
   @apply rounded-none border-b-[1.5px] border-black;
 }
+.category-active-text {
+  @apply text-primary;
+}

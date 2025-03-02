@@ -9,6 +9,7 @@ import {useRouter} from '@/i18n/routing';
 import {useCreateOrderMutation} from '@/services';
 import {order_now} from '@/assets';
 import Image from 'next/image';
+import {colors} from '@/lib';
 
 const OrderNow = () => {
   const t = useTranslations();
@@ -50,7 +51,7 @@ const OrderNow = () => {
   };
 
   const renderIcon = () => (
-    <Image src={order_now} alt="order_icon" width={24} height={24} />
+    <Image src={order_now} alt="order_icon" className="h-auto w-[1.5rem]" />
   );
 
   return (
@@ -58,7 +59,9 @@ const OrderNow = () => {
       name={t('order_now')}
       renderIcon={renderIcon}
       buttonStyle={styles.button}
+      buttonTxtStyle={styles.buttonText}
       showArrow
+      spinnerStyle={{color: colors.black}}
       isLoading={isCreatingOrder}
       onClick={handleOrderCreation}
     />

@@ -18,6 +18,7 @@ const CategoryItem = ({category}) => {
       <AppButton
         name={category?.presentation}
         onClick={onCategoryClick}
+        buttonTxtStyle={`${currentSelectedCategory == category?.id && styles['category-active-text']}`}
         buttonStyle={`${styles['category-button']} ${currentSelectedCategory == category?.id && styles['category-active']}`}
       />
     </div>

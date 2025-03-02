@@ -21,8 +21,8 @@ function OrderItem({item}) {
           <Image
             src={imageSource}
             alt={item?.line_item?.variant?.product?.presentation}
-            width={55}
-            height={55}
+            width={200}
+            height={200}
             className={styles.productImage}
           />
         </div>
@@ -31,6 +31,12 @@ function OrderItem({item}) {
             text={`${item?.line_item?.variant?.product?.presentation} ${variantName != productName ? variantName : ''}`}
             classes={styles.productName}
           />
+          {item?.line_item?.addons?.length > 0 && (
+            <AppText
+              text={`(${item.line_item.addons.map(addon => addon.presentation).join(', ')})`}
+              classes={styles.addonsText}
+            />
+          )}
           <AppText
             text={`${convertEnglishNumbersToArabic(
               Number(

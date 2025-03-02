@@ -7,7 +7,7 @@
 .quantity {
   @apply font-bold text-white;
 }
-.whiteText {
+.price {
   @apply text-white;
 }
 .addToCartButton {
@@ -20,7 +20,7 @@
   @apply flex items-center justify-between;
 }
 .priceContainer {
-  @apply rounded-full bg-black px-[1.3rem] py-2;
+  @apply rounded-full bg-red_robin px-[1.3rem] py-2;
 }
 .descContainer {
   @apply mb-4 mt-2;
@@ -36,4 +36,7 @@
 }
 .description {
   @apply text-sm text-doveGray;
+}
+.whiteText {
+  @apply text-white;
 }

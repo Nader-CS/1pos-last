@@ -117,7 +117,7 @@ const ProductDetails = ({product}) => {
             <div>{renderProductName()}</div>
             <div className={styles.priceContainer}>
               <AppText
-                classes={styles.whiteText}
+                classes={styles.price}
                 text={`${selectedVariantPrice} ${currency}`}
               />
             </div>
@@ -155,7 +155,11 @@ const ProductDetails = ({product}) => {
           )}
         </div>
       </div>
-      <div className={styles.actionMainContainer}>{renderActionButtons()}</div>
+      {order && (
+        <div className={styles.actionMainContainer}>
+          {renderActionButtons()}
+        </div>
+      )}
     </>
   );
 };
